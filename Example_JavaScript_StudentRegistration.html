@@ -1,0 +1,325 @@
+<html>
+<head>
+<style>
+
+	body{
+		background-color:  lightcyan;
+	}
+
+.save {
+	display: none;
+}
+	div{
+	height: -18px;
+	width: 240px;
+	background-color: lightseagreen;
+  margin-top:;
+			}
+#myDIV {
+  width: 1150px;
+  padding: 50px 0;
+  text-align:center;
+  background-color: lightblue;
+  margin-top:-400px;
+  margin-left:270px;
+}
+</style>
+
+<script>
+
+	function addStudent (){
+
+		var  sno =document.getElementById("sno").value;
+		var  name =document.getElementById("fname").value;
+		var age =document.getElementById("age").value;
+		var gender =document.getElementById("gender").value;
+		var studentclass =document.getElementById("studentclass").value;
+		var schoolName =document.getElementById("schoolName").value;
+
+		
+		console.log(sno);
+		console.log(name);
+		console.log(age);
+		console.log(gender);
+		console.log( studentclass);
+		console.log(schoolName);
+
+		
+
+let editButton = document.createElement('button');
+		 editButton.innerText = 'Edit';
+		 editButton.setAttribute('onclick',`editRow(this)`);
+
+
+      let deleteButton = document.createElement('button');
+      deleteButton.innerText = 'Delete';
+		 deleteButton.setAttribute('onclick',`deleteRow()`);// tableId modified
+
+		 let saveButton = document.createElement('button');
+		 saveButton.innerText = 'save';
+		 saveButton.setAttribute('onclick',`saveRow(this)`);
+
+		 
+   var table=document.getElementById("tableId");
+   var tableRows=document.getElementById("tableId").rows.length;
+
+  	saveButton.setAttribute('id',"save_"+tableRows)
+ 		saveButton.setAttribute('class', "saveBtn");
+
+		editButton.setAttribute('id',"edit_"+tableRows);
+   console.log("@@@@@"+tableRows);
+   	var row=table.insertRow(tableRows);
+
+   		var cellSno = row.insertCell(0);
+   		var  cellStudentName =row.insertCell(1);
+   		var  cellAge = row.insertCell(2);
+   		var  cellGender = row.insertCell(3);
+   		var  cellStudentclass = row.insertCell(4);
+   		var  cellSchoolName = row.insertCell(5);
+   		var cellAction=row.insertCell(6);
+   		
+   		   cellSno.innerHTML=sno;
+   		   cellSno.setAttribute('id','r'+tableRows+'c1');
+
+   		   cellStudentName.innerHTML= name;
+   		   cellStudentName.setAttribute('id','r'+tableRows+'c2');
+
+   		   cellAge.innerHTML=age;
+   		   cellAge.setAttribute('id','r'+tableRows+'c3');
+
+   		  cellGender.innerHTML=gender ;
+   		  cellGender.setAttribute('id','r'+tableRows+'c4');
+
+   		   cellStudentclass.innerHTML=studentclass;
+   		   cellStudentclass.setAttribute('id','r'+tableRows+'c5');
+
+   		   cellSchoolName.innerHTML=schoolName;
+   		   cellSchoolName.setAttribute('id','r'+tableRows+'c6');
+   		   // cellAction.innerText= newBtn;
+   		   cellAction.appendChild(deleteButton);
+   		   cellAction.appendChild(editButton);
+   		   cellAction.appendChild(saveButton);
+
+   		  
+		}//addStudent function end here
+
+ 		function deleteRow(){
+ 					document.getElementById("tableId").deleteRow(1);
+ 		}	
+
+ 		function editRow(x){
+
+ 			var tableRows=document.getElementById("tableId").rows.length;
+
+ 					console.log("hi"+x.getAttribute("id"));
+ 					var editIdValue = x.getAttribute("id");
+
+ 					var splited=editIdValue.split("_");
+ 					 var splitValue=splited[1];
+
+
+          console.log("from editRow thisId split value>"+ splitValue);
+ 					//var td = document.querySelector('td');
+
+ 		var rc1 = document.getElementById('r'+splitValue+'c1');
+ 		var inputRc1 = document.createElement('input');
+ 		inputRc1.type = 'text';
+ 		inputRc1.disabled="true";
+ 		inputRc1.setAttribute('id','ir'+ splitValue+'c1');
+    var rc1Value =document.getElementById("tableId").rows[splitValue].cells[0].innerHTML;
+    //alert("rc1Value:"+rc1Value);
+ 		rc1.innerText="";
+    inputRc1.value=rc1Value;
+
+ 		rc1.appendChild(inputRc1);
+ 	
+
+ 		var rc2 = document.getElementById('r'+splitValue+'c2');
+ 		var inputRc2 = document.createElement('input');
+ 		inputRc2.type = 'text';
+ 		inputRc2.setAttribute('id','ir'+splitValue+'c2');
+
+    var rc2Value =document.getElementById("tableId").rows[splitValue].cells[1].innerHTML;
+    //alert("rc1Value:"+rc1Value);
+ 		rc2.innerText="";
+    inputRc2.value=rc2Value;
+
+ 		rc2.appendChild(inputRc2);
+
+ 		var rc3 = document.getElementById('r'+splitValue+'c3');
+ 		var inputRc3 = document.createElement('input');
+ 		inputRc3.type = 'text';
+ 		inputRc3.setAttribute('id','ir'+splitValue+'c3');
+
+    var rc3Value =document.getElementById("tableId").rows[splitValue].cells[2].innerHTML;
+    //alert("rc1Value:"+rc1Value);
+ 		rc3.innerText="";
+    inputRc3.value=rc3Value;
+
+ 		rc3.appendChild(inputRc3);
+
+ 		var rc4 = document.getElementById('r'+splitValue+'c4');
+ 		var inputRc4 = document.createElement('input');
+ 		inputRc4.type = 'text';
+ 		inputRc4.setAttribute('id','ir'+splitValue+'c4');
+
+ 		 var rc4Value =document.getElementById("tableId").rows[splitValue].cells[3].innerHTML;
+    //alert("rc1Value:"+rc1Value);
+ 		rc4.innerText="";
+    inputRc4.value=rc4Value;
+ 		rc4.appendChild(inputRc4);
+
+ 		var rc5 = document.getElementById('r'+splitValue+'c5');
+ 		var inputRc5 = document.createElement('input');
+ 		inputRc5.type = 'text';
+ 		 inputRc5.setAttribute('id','ir'+splitValue+'c5');
+ 		  var rc5Value =document.getElementById("tableId").rows[splitValue].cells[4].innerHTML;
+    //alert("rc1Value:"+rc1Value);
+ 		rc5.innerText="";
+    inputRc5.value=rc5Value;
+ 		rc5.appendChild(inputRc5);
+
+ 		var rc6 = document.getElementById('r'+splitValue+'c6');
+ 		var inputRc6 = document.createElement('input');
+ 		inputRc6.type = 'text';
+ 		 		inputRc6.setAttribute('id','ir'+splitValue+'c6');
+ 		 		 var rc6Value =document.getElementById("tableId").rows[splitValue].cells[5].innerHTML;
+    //alert("rc1Value:"+rc1Value);
+ 		rc6.innerText="";
+    inputRc6.value=rc6Value;
+
+ 		rc6.appendChild(inputRc6);
+
+ 		x.style.display="none";
+ 		document.getElementById("save_"+splitValue).style.display="block";
+
+ 		}//end of editRow
+
+ 		function saveRow(a){
+ 			var saveRowId=a.getAttribute("id");//save_3
+ 			var splittedValue=saveRowId.split("_");//splittedValue[save,3]
+ 			var splitValue=splittedValue[1];
+
+ 			console.log("I'm from saveRow funtion:"+saveRowId);
+ 			console.log("I'm from saveRow function splitValue:"+ splitValue);
+ 			a.style.display="none";//"this" refers to save button which was clicked now, here save button got hidden.
+ 			//now we need to show edit button, by getting edit button object.
+
+ 			var editButton=document.getElementById("edit_"+splitValue);
+ 			editButton.style.display="block";
+
+ 			var ir2c1=document.getElementById("ir"+splitValue+"c1");
+ 		  ir2c1.style.display="none";
+ 			var ir2c1Value = ir2c1.value;
+ 			console.log("#ir2c1Value>"+ir2c1Value);
+ 			document.getElementById("r"+splitValue+"c1").innerText=ir2c1Value;
+
+
+
+ 	 		var ir2c2=document.getElementById("ir"+splitValue+"c2");
+ 	 		ir2c2.style.display="none";
+ 			var ir2c2Value = ir2c2.value;
+ 			console.log("#ir2c2Value>"+ir2c2Value);
+ 			document.getElementById("r"+splitValue+"c2").innerText=ir2c2Value;
+
+ 			var ir2c3=document.getElementById("ir"+splitValue+"c3");
+ 			ir2c3.style.display="none";
+ 			var ir2c3Value = ir2c3.value;
+ 			console.log("#ir2c3Value>"+ir2c3Value);
+ 			document.getElementById("r"+splitValue+"c3").innerText=ir2c3Value;
+
+
+ 			var ir2c4=document.getElementById("ir"+splitValue+"c4");
+ 			ir2c4.style.display="none";
+ 			var ir2c4Value = ir2c4.value;
+ 			console.log("#ir2c4Value>"+ir2c4Value);
+ 			document.getElementById("r"+splitValue+"c4").innerText=ir2c4Value;
+
+ 			var ir2c5=document.getElementById("ir"+splitValue+"c5");
+ 			ir2c5.style.display="none";
+ 		  var ir2c5Value = ir2c5.value;
+ 	 		console.log("#ir2c5Value>"+ir2c5Value);
+		  document.getElementById("r"+splitValue+"c5").innerText=ir2c5Value;
+  
+ 			var ir2c6=document.getElementById("ir"+splitValue+"c6");
+ 			ir2c6.style.display="none";
+ 			var ir2c6Value = ir2c6.value;
+ 			console.log("#ir2c6Value>"+ir2c6Value);
+ 			document.getElementById("r"+splitValue+"c6").innerText=ir2c6Value;
+   
+		
+ 		}
+
+
+</script>
+</head>
+<body>
+	<body>
+	<h1> Student Registration Form </h1>
+	<div id="div"></div>
+	<div class="div1"></div>
+	<div>
+<form>
+	<fieldset>
+
+	<label for=" S.no"> S.no:</label><br>
+  <input type="text" id="sno" name="sno"><br><br>
+
+  <label for="fname"> Student name:</label><br>
+  <input type="text" id="fname" name="fname"><br><br>
+
+  <label for=" Age">Age:</label><br>
+  <input type="text" id="age" name=" Age"><br><br>
+
+  <label for=" class">Gender:</label><br>
+  <input type="text" id="gender" name=" Gender"><br><br>
+
+  <label for=" class"> Class:</label><br>
+  <input type="text" id="studentclass" name=" class"><br><br>
+
+  <label for=" School Name">School Name:</label><br>
+  <input type="text" id="schoolName" name="" ><br><br>
+
+</fieldset>
+</form>
+</div>
+
+
+<button onclick="addStudent()">sudmit</button>
+
+<div id="myDIV">
+<table  border=" 2px" class="tb" id="tableId">
+
+	
+	<tr>
+	<th>S.no</th>
+
+	<th>Student Name</th>
+	<th>Age</th>
+	<th>Gender</th>
+	<th>Class</th>
+	<th>School</th>
+	<th>Action</th>
+	<th></th>
+</tr>
+
+<!-- <tr>
+	<td>1</td>
+	<td id="namerow1">Jeon Junkook </td>
+	<td>18</td>
+	<td>Male</td>
+	<td>7th</td>
+	<td>Emirates</td>
+	<td>
+ --><!-- 	<button class="save"> Save </button>  
+        <button class="edit"> Edit </button>  
+        <button class="delete"> Delete </button>
+    </td> -->
+
+
+	
+</Table>
+</div>
+ 
+</body>
+</html>
